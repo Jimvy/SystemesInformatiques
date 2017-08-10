@@ -631,7 +631,7 @@ Nous aurons l'occasion de présenter ultérieurement d'autres éléments utiles 
 
 .. [#fdynamic] Dans certains cas, on parle également de librairies dynamiques car ces librairies sont chargées dynamiquement à l'exécution du programme.
 
-.. [#fpath] La variable d'environnement ``PATH`` contient la liste des répertoires que le shell parcoure afin de localiser un exécutable à lancer lorsque l'utilisateur ne fournit par le chemin complet de l'exécutable à lancer.
+.. [#fpath] La variable d'environnement ``PATH`` contient la liste des répertoires que le shell parcourt afin de localiser un exécutable à lancer lorsque l'utilisateur ne fournit par le chemin complet de l'exécutable à lancer.
 
 .. [#fsyscall] En pratique, il correspond une fonction de la librairie à chaque appel système. Cette fonction a le même nom que l'appel système et les mêmes arguments et fait appel à `syscall(2)`_ pour l'exécution de l'appel système.
 
