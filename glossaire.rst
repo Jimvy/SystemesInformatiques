@@ -451,7 +451,7 @@ Glossaire
        à compléter
 
     descripteur de fichier
-       à compléter
+       Référence abstraite utilisée pour accéder à un fichier, dossier, pipe ou une autre ressource d'entrée/sortie. En langage C, c'est un entier positif ou nul (les valeurs négatives indiquent des erreurs ou l'absence de descripteur de fichier). Un descripteur de fichier réfère à une entrée particulière de la table des descripteurs de fichier du processus et donc à un :term:`open file object`. Par défaut, la majorité des processus possèdent 3 descripteurs de fichiers : 0 (entrée standard, STDIN_FILENO), 1 (sortie standard, STDOUT_FILENO) et 2 (sortie d'erreur standard, STDERR_FILENO). Les différents appels systèmes (`open(2)`_, `read(2)`_, `write(2)`_, `close(2)`_...) utilisent le descripteur de fichier plutôt qu'une référence directe à l'inode du fichier. Les descripteurs de fichiers et la table des descripteurs de fichier sont copiés lors d'un `fork(2)`_.
 
     répertoire
        à compléter
@@ -465,11 +465,14 @@ Glossaire
     offset pointer
        à compléter
 
+    endianness
+       Ordre dans lequel sont stockées ou transmis des entiers ou des mots représentés sur plusieurs bytes ou octets. Il existe deux principales représentations : :term:`little endian` et :term:`big endian`. Au sein d'un byte, l'ordre des bits peut être différent de l'ordre des bytes, mais cela a peu d'impact en pratique.
+
     little endian
-       à compléter
+       Format de représentation de nombre (voir :term:`endianness`) dans lequel le byte de poids faible (contenant le bit de poids faible) est stocké ou envoyé en premier (dans les adresses basses de la mémoire), les bytes suivants étant stockés (adresses croissantes) ou envoyés dans l'ordre croissant des poids, en terminant par le byte de poids fort (contenant le bit de poids fort, dans l'adresse la plus élevée, ou à la fin). Ce format est notamment utilisé par les architecture IA32, IA64, x86-64 et ARM.
 
     big endian
-       à compléter
+       Format de représentation de nombre (voir :term:`endianness`) dans lequel le byte de poids fort (contenant le bit de poids fort) est stocké ou envoyé en premier (dans les adresses basses de la mémoire), les bytes suivants étant stockés (adresses croissantes) ou envoyés dans l'ordre décroissant des poids, en terminant par le byte de poids fiable (contenant le bit de poids fiable, dans l'adresse la plus élevée, ou à la fin). Ce format est notamment utilisé par les architectures PowerPC et m68k, et par les protocoles de communications réseaux.
 
     lien symbolique
        à compléter
@@ -486,13 +489,13 @@ Glossaire
        à compléter
 
     open file object
-       à compléter
+       Structure de donnée maintenue par le noyau et contenant toutes les informations nécessaires au noyau sur un fichier ouvert par un processus. Elle contient notamment le mode d'ouverture du fichier (lecture/écriture/exécutable), l':term:`offset pointer` du fichier, ainsi qu'une référence au fichier contenu dans le système de fichiers (par exemple l':term:`inode`). Un open file object peut être référencé par un ou plusieurs |descripteurs de fichier|, qui partagent alors le même *offset pointer*. Les open file objects ne sont pas dupliqués par l'appel système `fork(2)`_.
 
     sémaphore nommé
        à compléter
 
     appel système lent
-       à compléter
+       Appel système bloquant, qui ne retourne que lorsqu'un évènement extérieur au processus s'est terminé (par exemple, une lecture de fichier sur un dispositif de stockage, un temps d'attente, la récupération de l'entrée d'un utilisateur...). Les appels système lents peuvent être interrompus par la réception d'un signal. Les appels systèmes `read(2)`_, `write(2)`_, `open(2)`_, `sendto(2)`_, `recvfrom(2)`_, `sendmsg(2)`_, `recvmsg(2)`_, `wait(2)`_, `waitpid(2)`_, `ioctl(2)`_ et les fonctions de la libraire appelant ces appels système comme `sleep(3)`_ sont des appels système ou des fonctions lents.
 
     handler
        à compléter
@@ -511,7 +514,7 @@ Glossaire
        à compléter
 
     adresse virtuelle
-       à compléter
+       Adresse réellement manipulée par le programme, au sein de la :term:`mémoire virtuelle`. Si les pages utilisées ont une taille de 2^n, et les adresses virtuelles sont encodées sur m bits, alors les m-n bits de poids fort de l'adresse virtuelle identifient la page dans laquelle est stockée l'information, et les n bits de poids faible indiquent la position de la donnée par rapport au début de la page.
 
     mémoire virtuelle
        à compléter
@@ -521,10 +524,10 @@ Glossaire
        Système de stockage de données s'appuyant uniquement sur de la mémoire flash.
 
     page
-       à compléter
+       Subdivision continue de taille fixe de la mémoire virtuelle de l'ordinateur, utilisée par le :term:`MMU`. Une taille courante pour une page est 4096 bytes.
 
     table des pages
-       à compléter
+       Structure de donnée utilisée par le système d'exploitation pour stocker les correspondances entre les adresses physiques et les adresses virtuelle. Chaque ligne de la table des pages contient l'adresse en mémoire physique où la page identifiée par la ligne est actuellement stockée (ou une information permettant de retrouver la page sur un dispositif de stockage), le bit de validité (indique si la page est actuellement stockée en mémoire RAM ou non), le bit R (indiquant si le processus peut lire les données de cette page), le bit W (indiquant si le processus peut modifier les données de cette page), le bit d'exécution (indiquant si la page contient des instructions pouvant être exécutées par le processeur), le bit de référence (indiquant si la page a récemment été accédée par le système) et le bit de modification (indiquant si la page a récemment été modifiée par le système).
 
     bit de validité
        à compléter
@@ -540,7 +543,7 @@ Glossaire
        à compléter
 
     adresse physique
-       à compléter
+       Adresse utilisée par la mémoire physique lors des opérations de lecture et d'écritures.
 
     page fault
     défaut de page
@@ -565,3 +568,6 @@ Glossaire
 
     stratégie de remplace de pages
        à compléter
+
+.. |descrpteurs de fichier| replace:: :term:`descrpteurs de fichier<descrpteur de fichier>`
+
